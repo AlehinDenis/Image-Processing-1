@@ -84,6 +84,26 @@ namespace Image_Processing_1
                 pictureBox1.Refresh();
             }
             else { return; }
+
+            Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+            {
+                Color sourceColor = sourceImage.GetPixel(x, y);
+                int intensity = (int)(0.2952 * sourceColor.R + 0.5547 * sourceColor.G + 0.148 * sourceColor.B);
+                Color resultColor = Color.FromArgb(intensity, intensity, intensity);
+                return resultColor;
+            }
+
+            Bitmap resultImage = new Bitmap(image1.Width, image1.Height);
+            for (int i = 0; i < image1.Width; i++)
+            {
+                for (int j = 0; j < image1.Height; j++)
+                {
+                    resultImage.SetPixel(i, j, calculateNewPixelColor(image1, i, j));
+                }
+            }
+            pictureBox1.Image = resultImage;
+            pictureBox1.Refresh();
+
         }
     }
 }
