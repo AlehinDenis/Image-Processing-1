@@ -30,6 +30,7 @@ namespace Image_Processing_1
                 pictureBox1.Width = 370;
                 pictureBox1.Refresh();
             }
+            else { return; }
 
             OpenFileDialog dialog2 = new OpenFileDialog();
             dialog2.Filter = "Image files|*.png;*.jpg;*.bmp|All filec(*.*)|*.*";
@@ -41,8 +42,9 @@ namespace Image_Processing_1
                 pictureBox2.Refresh();
                 
             }
+            else { return; }
 
-            if(image1.Width != image2.Width || image1.Height != image2.Height)
+            if (image1.Width != image2.Width || image1.Height != image2.Height)
             {
                 MessageBox.Show("Image are not the same size!");
                 return;
@@ -81,6 +83,7 @@ namespace Image_Processing_1
                 pictureBox2.Hide();
                 pictureBox1.Refresh();
             }
+            else { return; }
         }
     }
 }
