@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OpenCvSharp;
+using OpenCvSharp.Extensions;
 
 namespace Image_Processing_1
 {
@@ -73,13 +75,14 @@ namespace Image_Processing_1
 
         private void shapesOfGrayToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //MyFilter
             OpenFileDialog dialog1 = new OpenFileDialog();
             dialog1.Filter = "Image files|*.png;*.jpg;*.bmp|All filec(*.*)|*.*";
             if (dialog1.ShowDialog() == DialogResult.OK)
             {
                 image1 = new Bitmap(dialog1.FileName);
                 pictureBox1.Image = image1;
-                pictureBox1.Width = 760;
+                pictureBox1.Width = image1.Width;
                 pictureBox2.Hide();
                 pictureBox1.Refresh();
             }
@@ -103,6 +106,29 @@ namespace Image_Processing_1
             }
             pictureBox1.Image = resultImage;
             pictureBox1.Refresh();
+
+            //OpenCV Filter
+            Mat sourceImg = Cv2.ImRead(dialog1.FileName);
+            Mat grayImg = new Mat();
+            Cv2.CvtColor(sourceImg, grayImg, ColorConversionCodes.BGR2GRAY);
+
+            image2 = new Bitmap(grayImg.ToBitmap());
+            pictureBox2.Image = image2;
+            pictureBox2.Show();
+            pictureBox2.Refresh();
+
+            //if (dialog1.ShowDialog() == DialogResult.OK)
+            //{
+            //    Mat sourceImg = Cv2.ImRead(dialog1.FileName);
+            //    Mat grayImg = new Mat();
+            //    Cv2.CvtColor(sourceImg, grayImg, ColorConversionCodes.BGR2GRAY);
+
+            //    image2 = new Bitmap(grayImg.ToBitmap());
+            //    pictureBox2.Image = image2;
+            //    pictureBox2.Show();
+            //    pictureBox2.Refresh();
+            //}
+
 
         }
     }
