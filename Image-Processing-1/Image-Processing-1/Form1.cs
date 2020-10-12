@@ -82,7 +82,7 @@ namespace Image_Processing_1
             {
                 image1 = new Bitmap(dialog1.FileName);
                 pictureBox1.Image = image1;
-                pictureBox1.Width = image1.Width;
+                //pictureBox1.Width = image1.Width;
                 pictureBox2.Hide();
                 pictureBox1.Refresh();
             }
