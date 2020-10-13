@@ -173,7 +173,8 @@ namespace Image_Processing_1
                     if (max == 0)
                         hsv[i, j].s = 0;
                     else
-                        hsv[i, j].s = (max - min) / max;
+                        hsv[i, j].s = (max - min) / max
+                            ;
                 }
             return hsv;
         }
@@ -270,6 +271,38 @@ namespace Image_Processing_1
             else { return; }
 
             pictureBox1.Image = HSVtoRGB(RGBtoHSV(image1));
+        }
+
+        int Clamp(int i)
+        {
+            if (i < 0) return 0;
+            if (i > 255) return 255;
+            return i;
+        }
+
+        private void brightnessIncreaseToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog1 = new OpenFileDialog();
+            dialog1.Filter = "Image files|*.png;*.jpg;*.bmp|All filec(*.*)|*.*";
+            if (dialog1.ShowDialog() == DialogResult.OK)
+            {
+                image1 = new Bitmap(dialog1.FileName);
+                pictureBox1.Image = image1;
+                pictureBox1.Refresh();
+            }
+            else { return; }
+
+            for (int i = 0; i < image1.Width; i++)
+                for (int j = 0; j < image1.Height; j++)
+                {
+                    int r = (int)(image1.GetPixel(i, j).R * 1.25 * 128 / 100);
+                    int g = (int)(image1.GetPixel(i, j).G * 1.25 * 128 / 100);
+                    int b = (int)(image1.GetPixel(i, j).B * 1.25 * 128 / 100);
+
+                    image1.SetPixel(i, j, Color.FromArgb(Clamp(r), Clamp(g), Clamp(b)));
+                }
+
+            pictureBox1.Image = image1;
         }
     }
 }

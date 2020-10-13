@@ -32,9 +32,10 @@
             this.filtresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.symilarityOfTwoImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shapesOfGrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.convertationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brightnessIncreaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -55,7 +56,8 @@
             this.filtresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.symilarityOfTwoImagesToolStripMenuItem,
             this.shapesOfGrayToolStripMenuItem,
-            this.convertationToolStripMenuItem});
+            this.convertationToolStripMenuItem,
+            this.brightnessIncreaseToolStripMenuItem});
             this.filtresToolStripMenuItem.Name = "filtresToolStripMenuItem";
             this.filtresToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.filtresToolStripMenuItem.Text = "Filters";
@@ -73,6 +75,13 @@
             this.shapesOfGrayToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.shapesOfGrayToolStripMenuItem.Text = "Shapes of gray";
             this.shapesOfGrayToolStripMenuItem.Click += new System.EventHandler(this.shapesOfGrayToolStripMenuItem_Click);
+            // 
+            // convertationToolStripMenuItem
+            // 
+            this.convertationToolStripMenuItem.Name = "convertationToolStripMenuItem";
+            this.convertationToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.convertationToolStripMenuItem.Text = "Convertation";
+            this.convertationToolStripMenuItem.Click += new System.EventHandler(this.convertationToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -92,12 +101,12 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
-            // convertationToolStripMenuItem
+            // brightnessIncreaseToolStripMenuItem
             // 
-            this.convertationToolStripMenuItem.Name = "convertationToolStripMenuItem";
-            this.convertationToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.convertationToolStripMenuItem.Text = "Convertation";
-            this.convertationToolStripMenuItem.Click += new System.EventHandler(this.convertationToolStripMenuItem_Click);
+            this.brightnessIncreaseToolStripMenuItem.Name = "brightnessIncreaseToolStripMenuItem";
+            this.brightnessIncreaseToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.brightnessIncreaseToolStripMenuItem.Text = "Brightness increase";
+            this.brightnessIncreaseToolStripMenuItem.Click += new System.EventHandler(this.brightnessIncreaseToolStripMenuItem_Click_1);
             // 
             // Form1
             // 
@@ -130,6 +139,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ToolStripMenuItem convertationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem brightnessIncreaseToolStripMenuItem;
     }
 }
 
