@@ -278,9 +278,14 @@ namespace Image_Processing_1
             pictureBox1.Image = HSVtoRGB(RGBtoHSV(image1));
 
             // Convertation in OpenCV
+            Mat sourceImg = Cv2.ImRead(dialog1.FileName);
+            Mat HSVImg = new Mat();
+            Cv2.CvtColor(sourceImg, HSVImg, ColorConversionCodes.BGR2HSV);
 
-
-
+            image2 = new Bitmap(HSVImg.ToBitmap());
+            pictureBox2.Image = image2;
+            pictureBox2.Show();
+            pictureBox2.Refresh();
             // ^^^^^^Convertation in OpenCV^^^^^^
         }
 
@@ -338,5 +343,6 @@ namespace Image_Processing_1
             MessageBox.Show("Brightness increase execution time in RGB: " + elapsedMs1 + " ms.\nBrightness increase execution time in HVS: " + elapsedMs2 + " ms.");
             compare();
         }
+
     }
 }

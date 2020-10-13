@@ -33,9 +33,9 @@
             this.symilarityOfTwoImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shapesOfGrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convertationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brightnessIncreaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.brightnessIncreaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -83,6 +83,13 @@
             this.convertationToolStripMenuItem.Text = "Convertation";
             this.convertationToolStripMenuItem.Click += new System.EventHandler(this.convertationToolStripMenuItem_Click);
             // 
+            // brightnessIncreaseToolStripMenuItem
+            // 
+            this.brightnessIncreaseToolStripMenuItem.Name = "brightnessIncreaseToolStripMenuItem";
+            this.brightnessIncreaseToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.brightnessIncreaseToolStripMenuItem.Text = "Brightness increase";
+            this.brightnessIncreaseToolStripMenuItem.Click += new System.EventHandler(this.brightnessIncreaseToolStripMenuItem_Click_1);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(12, 27);
@@ -100,13 +107,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
-            // 
-            // brightnessIncreaseToolStripMenuItem
-            // 
-            this.brightnessIncreaseToolStripMenuItem.Name = "brightnessIncreaseToolStripMenuItem";
-            this.brightnessIncreaseToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.brightnessIncreaseToolStripMenuItem.Text = "Brightness increase";
-            this.brightnessIncreaseToolStripMenuItem.Click += new System.EventHandler(this.brightnessIncreaseToolStripMenuItem_Click_1);
             // 
             // Form1
             // 
