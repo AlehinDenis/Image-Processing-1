@@ -34,6 +34,7 @@
             this.shapesOfGrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.convertationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -53,7 +54,8 @@
             // 
             this.filtresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.symilarityOfTwoImagesToolStripMenuItem,
-            this.shapesOfGrayToolStripMenuItem});
+            this.shapesOfGrayToolStripMenuItem,
+            this.convertationToolStripMenuItem});
             this.filtresToolStripMenuItem.Name = "filtresToolStripMenuItem";
             this.filtresToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.filtresToolStripMenuItem.Text = "Filters";
@@ -90,6 +92,13 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
+            // convertationToolStripMenuItem
+            // 
+            this.convertationToolStripMenuItem.Name = "convertationToolStripMenuItem";
+            this.convertationToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.convertationToolStripMenuItem.Text = "Convertation";
+            this.convertationToolStripMenuItem.Click += new System.EventHandler(this.convertationToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -120,6 +129,7 @@
         private System.Windows.Forms.ToolStripMenuItem shapesOfGrayToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ToolStripMenuItem convertationToolStripMenuItem;
     }
 }
 

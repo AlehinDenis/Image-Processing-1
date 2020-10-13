@@ -131,5 +131,145 @@ namespace Image_Processing_1
 
 
         }
+
+        public class HSV
+        {
+            public double h;
+            public double s;
+            public double v;
+
+            public HSV()
+            {
+                h = 0;
+                s = 0;
+                v = 0;
+            }
+        }
+
+
+        public HSV[,] RGBtoHSV(Bitmap image)
+        {
+            HSV[,] hsv = new HSV[image.Width, image.Height];
+            for (int i = 0; i < image.Width; i++)
+                for (int j = 0; j < image.Height; j++)
+                    hsv[i, j] = new HSV();
+
+
+            for (int i = 0; i < image.Width; i++)
+                for (int j = 0; j < image.Height; j++)
+                {
+                    double r = image1.GetPixel(i, j).R;
+                    double g = image1.GetPixel(i, j).G;
+                    double b = image1.GetPixel(i, j).B;
+
+                    hsv[i, j].h = image.GetPixel(i, j).GetHue();
+                    double max = Math.Max(r, Math.Max(g, b)) / 255;
+                    double min = Math.Min(r, Math.Min(g, b)) / 255;
+                    hsv[i, j].v = max;
+
+
+
+
+                    if (max == 0)
+                        hsv[i, j].s = 0;
+                    else
+                        hsv[i, j].s = (max - min) / max;
+                }
+            return hsv;
+        }
+
+        public Bitmap HSVtoRGB(HSV[,] hsv)
+        {
+            Bitmap image = new Bitmap(hsv.GetLength(0), hsv.GetLength(1));
+
+            for (int i = 0; i < hsv.GetLength(0); i++)
+                for (int j = 0; j < hsv.GetLength(1); j++)
+                {
+                    double r = 0, g = 0, b = 0;
+
+                    if (hsv[i, j].s == 0)
+                    {
+                        r = hsv[i, j].v;
+                        g = hsv[i, j].v;
+                        b = hsv[i, j].v;
+                    }
+                    else
+                    {
+                        int sw;
+                        double f, p, q, t;
+
+                        if (hsv[i, j].h == 360)
+                            hsv[i, j].h = 0;
+                        else
+                            hsv[i, j].h = hsv[i, j].h / 60;
+
+                        sw = (int)Math.Truncate(hsv[i, j].h);
+                        f = hsv[i, j].h - sw;
+
+                        p = hsv[i, j].v * (1.0 - hsv[i, j].s);
+                        q = hsv[i, j].v * (1.0 - (hsv[i, j].s * f));
+                        t = hsv[i, j].v * (1.0 - (hsv[i, j].s * (1.0 - f)));
+
+                        switch (sw)
+                        {
+                            case 0:
+                                r = hsv[i, j].v;
+                                g = t;
+                                b = p;
+                                break;
+
+                            case 1:
+                                r = q;
+                                g = hsv[i, j].v;
+                                b = p;
+                                break;
+
+                            case 2:
+                                r = p;
+                                g = hsv[i, j].v;
+                                b = t;
+                                break;
+
+                            case 3:
+                                r = p;
+                                g = q;
+                                b = hsv[i, j].v;
+                                break;
+
+                            case 4:
+                                r = t;
+                                g = p;
+                                b = hsv[i, j].v;
+                                break;
+
+                            default:
+                                r = hsv[i, j].v;
+                                g = p;
+                                b = q;
+                                break;
+                        }
+
+                    }
+                    Color color = Color.FromArgb((byte)(r * 255), (byte)(g * 255), (byte)(b * 255));
+                    image.SetPixel(i, j, color);
+                }
+            return image;
+        }
+      
+
+        private void convertationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog1 = new OpenFileDialog();
+            dialog1.Filter = "Image files|*.png;*.jpg;*.bmp|All filec(*.*)|*.*";
+            if (dialog1.ShowDialog() == DialogResult.OK)
+            {
+                image1 = new Bitmap(dialog1.FileName);
+                pictureBox1.Image = image1;
+                pictureBox1.Refresh();
+            }
+            else { return; }
+
+            pictureBox1.Image = HSVtoRGB(RGBtoHSV(image1));
+        }
     }
 }
