@@ -21,31 +21,8 @@ namespace Image_Processing_1
             InitializeComponent();
         }
 
-        private void symilarityOfTwoImagesToolStripMenuItem_Click(object sender, EventArgs e)
+        public void compare()
         {
-            OpenFileDialog dialog1 = new OpenFileDialog();
-            dialog1.Filter = "Image files|*.png;*.jpg;*.bmp|All filec(*.*)|*.*";
-            if (dialog1.ShowDialog() == DialogResult.OK)
-            {
-                image1 = new Bitmap(dialog1.FileName);
-                pictureBox1.Image = image1;
-                pictureBox1.Width = 370;
-                pictureBox1.Refresh();
-            }
-            else { return; }
-
-            OpenFileDialog dialog2 = new OpenFileDialog();
-            dialog2.Filter = "Image files|*.png;*.jpg;*.bmp|All filec(*.*)|*.*";
-            if (dialog2.ShowDialog() == DialogResult.OK)
-            {
-                image2 = new Bitmap(dialog2.FileName);
-                pictureBox2.Image = image2;
-                pictureBox2.Show();
-                pictureBox2.Refresh();
-                
-            }
-            else { return; }
-
             if (image1.Width != image2.Width || image1.Height != image2.Height)
             {
                 MessageBox.Show("Image are not the same size!");
@@ -71,6 +48,34 @@ namespace Image_Processing_1
 
             double mse = mseR + mseG + mseB;
             MessageBox.Show("MSE is " + mse);
+        }
+
+        private void symilarityOfTwoImagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog1 = new OpenFileDialog();
+            dialog1.Filter = "Image files|*.png;*.jpg;*.bmp|All filec(*.*)|*.*";
+            if (dialog1.ShowDialog() == DialogResult.OK)
+            {
+                image1 = new Bitmap(dialog1.FileName);
+                pictureBox1.Image = image1;
+                pictureBox1.Width = 370;
+                pictureBox1.Refresh();
+            }
+            else { return; }
+
+            OpenFileDialog dialog2 = new OpenFileDialog();
+            dialog2.Filter = "Image files|*.png;*.jpg;*.bmp|All filec(*.*)|*.*";
+            if (dialog2.ShowDialog() == DialogResult.OK)
+            {
+                image2 = new Bitmap(dialog2.FileName);
+                pictureBox2.Image = image2;
+                pictureBox2.Show();
+                pictureBox2.Refresh();
+                
+            }
+            else { return; }
+
+            compare();
         }
 
         private void shapesOfGrayToolStripMenuItem_Click(object sender, EventArgs e)
@@ -292,6 +297,8 @@ namespace Image_Processing_1
             }
             else { return; }
 
+            HSV[,] hsv = RGBtoHSV(image1);
+            var watch1 = System.Diagnostics.Stopwatch.StartNew();
             for (int i = 0; i < image1.Width; i++)
                 for (int j = 0; j < image1.Height; j++)
                 {
@@ -301,8 +308,29 @@ namespace Image_Processing_1
 
                     image1.SetPixel(i, j, Color.FromArgb(Clamp(r), Clamp(g), Clamp(b)));
                 }
-
             pictureBox1.Image = image1;
+            watch1.Stop();
+            var elapsedMs1 = watch1.ElapsedMilliseconds;
+
+
+            image2 = new Bitmap(image1.Width, image1.Height);
+            var watch2 = System.Diagnostics.Stopwatch.StartNew();
+            for (int i = 0; i < image2.Width; i++)
+                for (int j = 0; j < image2.Height; j++)
+                {
+                    hsv[i, j].v *= 1.6;
+                    hsv[i, j].v = hsv[i, j].v > 1 ? 1 : hsv[i, j].v;
+                    hsv[i, j].v = hsv[i, j].v < 0 ? 0 : hsv[i, j].v;
+                }
+            watch2.Stop();
+            var elapsedMs2 = watch2.ElapsedMilliseconds;
+            
+
+
+            image2 = HSVtoRGB(hsv);
+            pictureBox2.Image = image2;
+            MessageBox.Show("Brightness increase execution time in RGB: " + elapsedMs1 + " ms.\nBrightness increase execution time in HVS: " + elapsedMs2 + " ms.");
+            compare();
         }
     }
 }
